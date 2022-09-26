@@ -18,7 +18,7 @@ glm_weekly_1 %>% summary()
 # Only Lag2 coefficient is statistically significant.
 
 # c)
-glm_weekly_pred_1 <- predict(glm_weekly_1, type = 'response')
+glm_weekly_pred_1 <- predict.glm(glm_weekly_1, type = 'response')
 glm_weekly_pred_1 <- ifelse(glm_weekly_pred_1 > .5, 'Up', 'Down')
 glm_weekly_tab_1 <- table(glm_weekly_pred_1, weekly_ex$Direction)
 
@@ -63,7 +63,7 @@ weekly_ex %>%
 weekly_ex_train %>%
   glm(Direction ~ Lag2, data = ., family = binomial) -> glm_weekly_2
 
-glm_weekly_pred_2 <- predict(
+glm_weekly_pred_2 <- predict.glm(
   glm_weekly_2,
   newdata = weekly_ex_test,
   type = 'response'
@@ -164,7 +164,7 @@ knn_weekly_tib %>%
 weekly_ex_train %>%
   glm(Direction ~ poly(Lag2, 2), data = ., family = binomial) -> glm_weekly_3
 
-glm_weekly_pred_3 <- predict(
+glm_weekly_pred_3 <- predict.glm(
   glm_weekly_3,
   newdata = weekly_ex_test,
   type = 'response'
@@ -244,7 +244,7 @@ auto_ex_train %>%
     family = binomial
   ) -> glm_auto_1
 
-glm_auto_pred_1 <- predict(
+glm_auto_pred_1 <- predict.glm(
   glm_auto_1,
   newdata = auto_ex_test,
   type = 'response'
@@ -416,7 +416,7 @@ boston_ex_train %>%
     family = binomial
   ) -> glm_boston_1
 
-glm_boston_pred_1 <- predict(
+glm_boston_pred_1 <- predict.glm(
   glm_boston_1,
   newdata = boston_ex_test,
   type = 'response'
@@ -485,31 +485,6 @@ knn_boston_tib %>%
   theme_bw()
 
 # KNN provided best results for K = 1. Method was able to correctly predict 92% of 'above median' and 91% of 'below median' observations. Classification error is 9%.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
